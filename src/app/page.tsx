@@ -9,13 +9,15 @@ import Gallery from "@/components/sections/Gallery";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
+import { brand } from "@/data/siteContent";
 
 const siteUrl = "https://lotusgrace.vercel.app";
 
 const venueStructuredData = {
   "@context": "https://schema.org",
   "@type": "EventVenue",
-  name: "Hotel Lotus Grace",
+  name: brand.name,
+  legalName: brand.legalName,
   description:
     "Luxury banquet and event venue in Sahibabad, Ghaziabad for weddings, engagements, social celebrations and corporate galas.",
   url: siteUrl,
@@ -26,7 +28,7 @@ const venueStructuredData = {
   priceRange: "$$$",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Plot Alpha, Sahibabad Industrial Area Site 4",
+    streetAddress: "7/1, Site-4, Industrial Area",
     addressLocality: "Sahibabad",
     addressRegion: "Uttar Pradesh",
     postalCode: "201010",

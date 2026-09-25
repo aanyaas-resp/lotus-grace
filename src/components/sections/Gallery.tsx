@@ -13,7 +13,7 @@ export default function Gallery() {
   const filtered = gallery.images.filter((img) => active === "All" || img.tab === active);
 
   return (
-    <section id="gallery" className="bg-neutral">
+    <section id="gallery" className="border-t border-primary/5 bg-gradient-to-b from-surface-container-low via-surface to-surface-container-low">
       <div className="mx-auto max-w-7xl px-6 py-24 sm:px-10 md:py-32">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <Reveal>

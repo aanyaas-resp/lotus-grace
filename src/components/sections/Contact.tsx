@@ -37,17 +37,17 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="bg-surface">
+    <section id="contact" className="border-t border-primary/5 bg-gradient-to-br from-surface via-surface-container-low to-surface-container">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-24 sm:px-10 md:py-32 lg:grid-cols-5 lg:gap-8">
         <Reveal direction="left" className="lg:col-span-3">
           <div className="flex flex-col gap-3">
             <span className="text-xs tracking-[0.25em] uppercase text-secondary font-medium">
               {contact.eyebrow}
             </span>
-            <h2 className="font-[family-name:var(--font-heading)] text-[clamp(2rem,4vw,3rem)] leading-[1.1] text-primary">
+            <h2 className="font-headline-lg text-headline-lg leading-tight text-primary">
               {contact.headline}
             </h2>
-            <p className="max-w-md text-base text-primary/65">{contact.body}</p>
+            <p className="max-w-md text-base leading-relaxed text-primary/80">{contact.body}</p>
           </div>
 
           <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-6">
@@ -137,7 +137,7 @@ export default function Contact() {
             <Button type="submit" variant="primary" showArrow={false} className="mt-1 w-full sm:w-fit">
               {contact.submitLabel}
             </Button>
-            <p className="text-xs text-primary/45">{contact.privacyNote}</p>
+            <p className="text-sm text-primary/60">{contact.privacyNote}</p>
           </form>
         </Reveal>
 

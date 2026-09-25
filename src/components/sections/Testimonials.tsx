@@ -4,7 +4,7 @@ import { testimonials } from "@/data/siteContent";
 
 export default function Testimonials() {
   return (
-    <section id="reviews" className="bg-surface-container">
+    <section id="reviews" className="border-t border-primary/5 bg-gradient-to-b from-surface-container via-surface to-surface-container">
       <div className="mx-auto flex max-w-7xl flex-col gap-space-lg px-margin py-space-xl sm:px-margin-tablet lg:px-margin-desktop">
         <div className="flex flex-col gap-space-sm md:flex-row md:items-end md:justify-between">
           <Reveal>
@@ -30,11 +30,11 @@ export default function Testimonials() {
                 <div>
                   <div className="mb-space-xs text-secondary" aria-label="5 star review">★★★★★</div>
                   <p className="mb-space-sm font-headline-sm italic leading-relaxed text-primary">&quot;{review.quote}&quot;</p>
-                  <p className="text-sm leading-relaxed text-on-surface-variant">{review.body}</p>
+                  <p className="text-base leading-relaxed text-on-surface-variant">{review.body}</p>
                 </div>
                 <div className="mt-space-md bg-surface-container-low p-space-xs">
                   <span className="block text-xs font-bold text-primary">{review.name}</span>
-                  <span className="text-xs text-on-surface-variant">{review.context}</span>
+                  <span className="text-sm text-on-surface-variant">{review.context}</span>
                 </div>
               </article>
             </Reveal>

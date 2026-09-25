@@ -7,7 +7,7 @@ import type { IconName } from "@/components/ui/Icon";
 
 export default function About() {
   return (
-    <section id="about" className="relative bg-neutral">
+    <section id="about" className="relative border-t border-primary/5 bg-gradient-to-br from-surface via-surface-container-low to-surface">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-16 px-6 py-24 sm:px-10 md:grid-cols-2 md:gap-14 md:py-32">
         <Reveal direction="left" className="flex flex-col gap-8">
           <SectionHeading
@@ -18,7 +18,7 @@ export default function About() {
 
           <div className="flex flex-col gap-5">
             {about.paragraphs.map((p) => (
-              <p key={p} className="max-w-lg text-base leading-relaxed text-primary/70">
+              <p key={p} className="max-w-lg text-base leading-relaxed text-primary/80">
                 {p}
               </p>
             ))}
@@ -31,7 +31,7 @@ export default function About() {
                 <h3 className="font-[family-name:var(--font-heading)] text-lg text-primary">
                   {feature.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-primary/60">{feature.description}</p>
+                <p className="text-sm leading-relaxed text-primary/75">{feature.description}</p>
               </div>
             ))}
           </div>

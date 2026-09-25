@@ -1,6 +1,7 @@
 export const brand = {
   name: "Lotus Grace",
   shortName: "Lotus Grace",
+  legalName: "7 Lotus Elevenses Private Limited",
   tagline: "Luxury Banquets & Events",
   logo: "/images/logo.png",
   location: "Ghaziabad",
@@ -9,7 +10,7 @@ export const brand = {
   whatsapp: "919355470701",
   email: "celebrations@lotusgrace.in",
   address:
-    "Plot Alpha, Sahibabad Industrial Area Site 4, Sahibabad, Ghaziabad, Uttar Pradesh 201010",
+    "7/1, Site-4, Industrial Area, Sahibabad, Ghaziabad, Uttar Pradesh 201010",
   hours: "Concierge available daily, 9:00 AM – 10:00 PM",
   instagramUrl: "https://instagram.com/_lotusgrace",
   instagramHandle: "@_lotusgrace",

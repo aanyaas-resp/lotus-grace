@@ -6,7 +6,7 @@ import { whyChooseUs } from "@/data/siteContent";
 
 export default function WhyChooseUs() {
   return (
-    <section id="why-us" className="bg-surface">
+    <section id="why-us" className="border-t border-primary/5 bg-gradient-to-br from-surface via-surface-container-low to-secondary-fixed/10">
       <div className="mx-auto max-w-7xl px-6 py-24 sm:px-10 md:py-32">
         <Reveal>
           <SectionHeading
@@ -17,7 +17,7 @@ export default function WhyChooseUs() {
           />
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mx-auto mt-6 max-w-lg text-center text-base leading-relaxed text-primary/65">
+          <p className="mx-auto mt-6 max-w-lg text-center text-base leading-relaxed text-primary/80">
             {whyChooseUs.intro}
           </p>
         </Reveal>
@@ -32,7 +32,7 @@ export default function WhyChooseUs() {
                 <h3 className="font-[family-name:var(--font-heading)] text-xl text-primary">
                   {feature.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-primary/60">{feature.description}</p>
+                <p className="text-sm leading-relaxed text-primary/75">{feature.description}</p>
                 <span className="mt-auto pt-2 text-xs tracking-[0.2em] uppercase text-secondary/70">
                   {feature.linkLabel}
                 </span>

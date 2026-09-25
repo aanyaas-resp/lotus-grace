@@ -14,14 +14,14 @@ export default function Celebrations() {
   const tab = milestones.tabs[active];
 
   return (
-    <section id="celebrations" className="bg-surface-container-low">
+    <section id="celebrations" className="border-t border-primary/5 bg-gradient-to-b from-surface-container-low via-surface to-surface-container">
       <div className="mx-auto max-w-7xl px-6 py-24 sm:px-10 md:py-32">
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <Reveal>
             <SectionHeading eyebrow={milestones.eyebrow} headline={milestones.headline} className="max-w-xl" />
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="max-w-sm text-sm leading-relaxed text-primary/60">{milestones.intro}</p>
+            <p className="max-w-sm text-base leading-relaxed text-primary/75">{milestones.intro}</p>
           </Reveal>
         </div>
 
@@ -65,7 +65,7 @@ export default function Celebrations() {
                 <h3 className="font-[family-name:var(--font-heading)] text-3xl leading-tight text-primary sm:text-4xl">
                   {tab.title} <span className="italic text-secondary">{tab.titleAccent}</span>
                 </h3>
-                <p className="max-w-md text-base leading-relaxed text-primary/65">
+                <p className="max-w-md text-base leading-relaxed text-primary/80">
                   {tab.description}
                 </p>
 

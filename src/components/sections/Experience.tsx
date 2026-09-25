@@ -7,7 +7,7 @@ export default function Experience() {
   const [majestic, flavours, hospitality, comfort] = experience.cards;
 
   return (
-    <section id="experience" className="bg-surface">
+    <section id="experience" className="border-t border-primary/5 bg-gradient-to-b from-surface via-surface-container-low to-surface">
       <div className="mx-auto max-w-7xl px-6 py-24 sm:px-10 md:py-32">
         <Reveal>
           <SectionHeading
@@ -64,7 +64,7 @@ function Card({ card }: { card: CardData }) {
         {card.chapter}
       </span>
 
-      <h3 className="font-headline-lg text-headline-lg">
+      <h3 className="font-headline-md text-headline-md">
         {card.title}
       </h3>
 

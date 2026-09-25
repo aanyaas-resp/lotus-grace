@@ -19,7 +19,7 @@ export default function Footer() {
             </p>
             <span className="flex items-start gap-2 text-xs leading-relaxed text-secondary-fixed-dim">
               <MapPin className="mr-1 inline-block h-3.5 w-3.5" />
-              Site 4, Sahibabad Industrial Area, Ghaziabad, NCR
+              {brand.address}
             </span>
             <Link
               href={brand.instagramUrl}
@@ -72,7 +72,7 @@ export default function Footer() {
 
       <div className="border-t border-surface/10 px-6 py-6 sm:px-10">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 text-xs text-on-primary-container sm:flex-row sm:items-center sm:justify-between">
-          <p>© {footer.year} Hotel Lotus Grace. All rights reserved.</p>
+          <p>© {footer.year} {brand.name}. {brand.legalName}. All rights reserved.</p>
           <p>
             Website designed &amp; developed by{" "}
             <a href="https://aniketwebdev.in" target="_blank" rel="noopener noreferrer" className="font-semibold text-secondary-fixed transition-colors hover:text-surface">

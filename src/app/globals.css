@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --cream: #fef9f1;
-  --blush: #f2ede5;
+  --cream: #f8f0e3;
+  --blush: #eee3d3;
   --rose: #546255;
   --charcoal: #1d1c17;
   --gold: #c88a2b;
   --forest: #152218;
   --forest-deep: #010803;
-  --surface-muted: #f8f3eb;
-  --surface-high: #e7e2da;
+  --surface-muted: #f1e7d8;
+  --surface-high: #e2d4c0;
 
   --background: var(--cream);
   --foreground: var(--charcoal);
@@ -65,12 +65,30 @@
   --font-headline-lg: var(--font-heading);
   --font-headline-md: var(--font-heading);
   --font-headline-sm: var(--font-heading);
+  --text-display-xl: clamp(3.2rem, 7.5vw, 6.5rem);
+  --text-display-xl--line-height: 0.98;
+  --text-display-lg: clamp(2.5rem, 5vw, 4rem);
+  --text-display-lg--line-height: 1.08;
+  --text-headline-lg: clamp(2.25rem, 5vw, 4rem);
+  --text-headline-lg--line-height: 1.12;
+  --text-headline-md: clamp(1.75rem, 3vw, 2.5rem);
+  --text-headline-md--line-height: 1.18;
+  --text-headline-sm: 1.25rem;
+  --text-headline-sm--line-height: 1.3;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.7;
+  --text-body-md: 1rem;
+  --text-body-md--line-height: 1.7;
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.55;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image: linear-gradient(120deg, #eee3d3 0%, #fffaf2 48%, #e8dbc7 100%);
+  background-attachment: fixed;
   color: var(--foreground);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   overscroll-behavior-x: none;
 }
