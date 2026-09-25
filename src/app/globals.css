@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+:root {
+  --cream: #fef9f1;
+  --blush: #f2ede5;
+  --rose: #546255;
+  --charcoal: #1d1c17;
+  --gold: #c88a2b;
+  --forest: #152218;
+  --forest-deep: #010803;
+  --surface-muted: #f8f3eb;
+  --surface-high: #e7e2da;
+
+  --background: var(--cream);
+  --foreground: var(--charcoal);
+}
+
+@theme inline {
+  --color-primary: var(--forest);
+  --color-primary-container: var(--forest);
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #c0cfbf;
+  --color-secondary: #7f560e;
+  --color-secondary-container: #fdc575;
+  --color-secondary-fixed: #ffddb1;
+  --color-secondary-fixed-dim: #f3bd6d;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-fixed: #291800;
+  --color-surface: var(--cream);
+  --color-surface-container: var(--blush);
+  --color-surface-container-low: var(--surface-muted);
+  --color-surface-container-high: var(--surface-high);
+  --color-surface-container-highest: #ded9d2;
+  --color-on-surface: var(--charcoal);
+  --color-on-surface-variant: #434843;
+  --color-outline: #747873;
+  --color-outline-variant: #c3c8c1;
+  --color-tertiary: #100303;
+  --color-tertiary-container: #2d1a18;
+  --radius-DEFAULT: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --spacing-space-xs: 0.375rem;
+  --spacing-space-sm: 0.75rem;
+  --spacing-space-md: 1.25rem;
+  --spacing-space-lg: 2.25rem;
+  --spacing-space-xl: 3.5rem;
+  --spacing-margin: 1.25rem;
+  --spacing-margin-tablet: 2.5rem;
+  --spacing-margin-desktop: 5rem;
+  --spacing-gutter: 1.5rem;
+  --spacing-gutter-desktop: 2.5rem;
+  --color-cream: var(--cream);
+  --color-neutral: var(--cream);
+  --color-blush: var(--blush);
+  --color-rose: var(--rose);
+  --color-charcoal: var(--charcoal);
+  --color-gold: var(--gold);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+  --font-display-xl: var(--font-heading);
+  --font-display-lg: var(--font-heading);
+  --font-headline-lg: var(--font-heading);
+  --font-headline-md: var(--font-heading);
+  --font-headline-sm: var(--font-heading);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 15px;
+  line-height: 1.7;
+  overscroll-behavior-x: none;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
+}
+
+* {
+  scrollbar-width: none;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--forest-deep);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
