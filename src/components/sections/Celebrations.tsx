@@ -14,24 +14,34 @@ export default function Celebrations() {
   const tab = milestones.tabs[active];
 
   return (
-    <section id="celebrations" className="border-t border-primary/5 bg-gradient-to-b from-surface-container-low via-surface to-surface-container">
+    <section
+      id="celebrations"
+      className="border-t border-primary/5 bg-gradient-to-b from-surface-container-low via-surface to-surface-container"
+    >
       <div className="mx-auto max-w-7xl px-6 py-24 sm:px-10 md:py-32">
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <Reveal>
-            <SectionHeading eyebrow={milestones.eyebrow} headline={milestones.headline} className="max-w-xl" />
+            <SectionHeading
+              eyebrow={milestones.eyebrow}
+              headline={milestones.headline}
+              className="max-w-xl"
+            />
           </Reveal>
-          <Reveal delay={0.1}>
-            <p className="max-w-sm text-base leading-relaxed text-primary/75">{milestones.intro}</p>
-          </Reveal>
+          {/* <Reveal delay={0.1}>
+            <p className="max-w-sm text-base leading-relaxed text-on-surface-variant">
+              {milestones.intro}
+            </p>
+          </Reveal> */}
         </div>
 
+        {/* Tabs — horizontal scroll on mobile instead of an awkward 2-col grid */}
         <Reveal delay={0.15}>
-          <div className="mt-10 grid grid-cols-2 border-b border-primary/15 sm:flex sm:flex-wrap sm:gap-6">
+          <div className="mt-10 flex gap-6 overflow-x-auto border-b border-primary/15 sm:flex-wrap">
             {milestones.tabs.map((t, i) => (
               <button
                 key={t.id}
                 onClick={() => setActive(i)}
-                className="relative min-h-12 border-b-2 border-transparent px-1 text-left text-[10px] font-semibold uppercase tracking-[0.12em] transition-colors sm:min-h-14 sm:text-xs"
+                className="relative min-h-12 shrink-0 border-b-2 border-transparent px-1 text-left text-[11px] font-semibold tracking-[0.08em] transition-colors sm:min-h-14 sm:text-xs"
               >
                 {active === i && (
                   <motion.span
@@ -40,7 +50,13 @@ export default function Celebrations() {
                     transition={{ type: "spring", stiffness: 400, damping: 32 }}
                   />
                 )}
-                <span className={active === i ? "relative text-primary" : "relative text-on-surface-variant hover:text-primary"}>
+                <span
+                  className={
+                    active === i
+                      ? "relative text-primary"
+                      : "relative text-on-surface-variant hover:text-primary"
+                  }
+                >
                   {t.label}
                 </span>
               </button>
@@ -48,7 +64,8 @@ export default function Celebrations() {
           </div>
         </Reveal>
 
-        <div className="relative mt-8 overflow-hidden rounded-xl bg-gradient-to-br from-surface via-surface-container-low to-surface-container shadow-lg">
+        {/* Content — no boxed card. Sits directly on the section, watermark gives it presence */}
+        <div className="relative mt-4 overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={tab.id}
@@ -56,24 +73,32 @@ export default function Celebrations() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.45, ease }}
-              className="grid grid-cols-1 gap-10 p-8 md:grid-cols-2 md:gap-14 md:p-12"
+              className="relative grid grid-cols-1 gap-10 border-t border-outline-variant/60 py-10 md:grid-cols-2 md:gap-16 md:py-14"
             >
-              <div className="flex flex-col justify-center gap-5">
-                <span className="text-xs tracking-[0.25em] uppercase text-secondary">
+              {/* Watermark of the active tab's own label — the one bold move, and it's content-specific */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -top-6 left-0 select-none whitespace-nowrap font-[family-name:var(--font-heading)] text-[4.5rem] italic leading-none text-primary/[0.04] sm:text-[7rem] md:text-[8.5rem]"
+              >
+                {tab.label}
+              </span>
+
+              <div className="relative flex flex-col justify-center gap-5">
+                <span className="text-xs tracking-[0.2em] text-secondary">
                   {tab.kicker}
                 </span>
                 <h3 className="font-[family-name:var(--font-heading)] text-3xl leading-tight text-primary sm:text-4xl">
                   {tab.title} <span className="italic text-secondary">{tab.titleAccent}</span>
                 </h3>
-                <p className="max-w-md text-base leading-relaxed text-primary/80">
+                <p className="max-w-md text-base leading-relaxed text-on-surface-variant">
                   {tab.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 pt-1">
                   {tab.tags.map((t) => (
                     <span
                       key={t}
-                      className="rounded-full bg-tertiary/40 px-4 py-1.5 text-xs text-primary/70"
+                      className="rounded border border-outline-variant px-3 py-1 text-xs text-on-surface-variant"
                     >
                       {t}
                     </span>
@@ -82,19 +107,25 @@ export default function Celebrations() {
 
                 <a
                   href="#contact"
-                  className="group mt-2 inline-flex w-fit items-center gap-2 border-b border-secondary pb-1 text-sm tracking-wide text-primary transition-colors hover:text-secondary"
+                  className="group mt-3 inline-flex w-fit items-center border-b border-secondary/50 pb-1 text-sm tracking-wide text-primary transition-colors hover:border-secondary hover:text-secondary"
                 >
                   {tab.linkLabel}
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">↗</span>
                 </a>
               </div>
 
-              <Media
-                label={`${tab.label} at Hotel Lotus Grace`}
-                tone="gold"
-                src="/images/gallery/galary9.png"
-                className="aspect-[4/3] rounded-2xl md:aspect-auto"
-              />
+              {/* Image with an offset outline frame instead of a drop shadow */}
+              <div className="relative">
+                <div
+                  aria-hidden
+                  className="absolute -bottom-3 -right-3 h-full w-full border border-secondary/50 sm:-bottom-4 sm:-right-4"
+                />
+                <Media
+                  label={`${tab.label} at Hotel Lotus Grace`}
+                  tone="gold"
+                  src="/images/gallery/galary9.png"
+                  className="relative aspect-[4/3] rounded-none md:aspect-auto md:h-full"
+                />
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>

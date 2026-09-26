@@ -1,14 +1,21 @@
 "use client";
 
+import { useEffect, useState, type MouseEvent as ReactMouseEvent } from "react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { nav, brand } from "@/data/siteContent";
 import { cn } from "@/lib/utils";
 
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Pointer-tracked glossy highlight for the liquid-glass background
+  const [sheen, setSheen] = useState({ x: 50, y: 0, active: false });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -17,71 +24,155 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Lock body scroll while the mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  // Close on Escape
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
+  function handlePointerMove(e: ReactMouseEvent<HTMLElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setSheen({
+      x: ((e.clientX - rect.left) / rect.width) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100,
+      active: true,
+    });
+  }
+
   return (
     <header
+      onMouseMove={handlePointerMove}
+      onMouseLeave={() => setSheen((s) => ({ ...s, active: false }))}
       className={cn(
-        "fixed z-50 overflow-hidden backdrop-blur-xl transition-all duration-500 ease-out",
+        "fixed left-1/2 top-2.5 z-50 w-[calc(100vw-2.5rem)] -translate-x-1/2 overflow-hidden rounded-xl",
+        "bg-gradient-to-b from-primary/55 via-primary/65 to-primary/75 backdrop-blur-2xl backdrop-saturate-150",
+        "border border-surface/15 transition-shadow duration-500 lg:w-fit lg:max-w-[calc(100vw-2.5rem)]",
         scrolled
-          ? "inset-x-5 top-5 rounded-2xl bg-surface/95 shadow-[0_18px_40px_-18px_rgba(21,34,24,0.55)]"
-          : "inset-x-0 top-0 rounded-none bg-transparent shadow-none"
+          ? "shadow-[inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.18),0_18px_44px_-18px_rgba(21,34,24,0.6)]"
+          : "shadow-[inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-1px_0_rgba(0,0,0,0.12),0_10px_30px_-16px_rgba(21,34,24,0.4)]"
       )}
     >
-      <div className={cn(
-        "border-b px-margin py-space-xs text-center text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors duration-500 sm:text-xs",
-        scrolled
-          ? "border-secondary-container/20 bg-primary text-secondary-fixed"
-          : "border-secondary-fixed/20 bg-primary/35 text-secondary-fixed"
-      )}>
-        {"✦ 2026–27 Wedding & Gala Bookings Open · Sahibabad ✦"}
+      {/* Specular rim light along the top edge */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-surface/80 to-transparent"
+      />
+
+      {/* Pointer-tracked glossy highlight — desktop only */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 hidden transition-opacity duration-300 lg:block"
+        style={{
+          opacity: sheen.active ? 1 : 0,
+          backgroundImage: `radial-gradient(180px circle at ${sheen.x}% ${sheen.y}%, rgba(255,255,255,0.28), transparent 70%)`,
+          mixBlendMode: "overlay",
+        }}
+      />
+
+      {/* Main bar — logo, links, CTA. No promo strip, no border lines anywhere. */}
+      <div className="relative mx-auto flex h-14 w-full items-center justify-between gap-gutter px-2 sm:h-16 lg:w-max lg:max-w-full">
+        {/* Logo + links, grouped as one left-side cluster so the gap after the logo stays fixed
+            instead of justify-between stretching it to fill the row. */}
+        <div className="flex min-w-0 items-center gap-8">
+          <Link
+            href="#home"
+            onClick={() => setMenuOpen(false)}
+            className="group flex shrink-0 items-center gap-space-sm text-surface"
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-surface-container-low p-1 shadow-sm transition-transform duration-300 group-hover:scale-105 sm:h-9 sm:w-9">
+              <Image
+                src={brand.logo}
+                alt={`${brand.name} logo`}
+                width={52}
+                height={42}
+                className="h-6 w-auto object-contain sm:h-7"
+              />
+            </span>
+          </Link>
+
+          {/* Links — plain, no wrapping box/border, just an underline on hover */}
+          <nav className="hidden items-center gap-6 lg:flex">
+            {nav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="relative inline-flex items-center gap-1.5 px-0.5 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-surface/85 transition-colors after:absolute after:inset-x-0 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-secondary-container after:transition-transform hover:text-surface hover:after:scale-x-100"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        {/* CTA + mobile toggle */}
+        <div className="flex items-center gap-2">
+          <Link
+            href="#contact"
+            className="hidden items-center gap-1.5 rounded-[12px] bg-surface px-space-md py-2.5 text-sm font-semibold uppercase tracking-[0.1em] text-primary shadow-[0_8px_20px_-10px_rgba(0,0,0,0.35)] transition-all hover:-translate-y-0.5 hover:bg-secondary-container sm:inline-flex"
+          >
+            Enquire Now
+            <ArrowUpRight className="h-3.5 w-3.5" />
+          </Link>
+
+          <button
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            className="flex h-10 w-10 items-center justify-center rounded-xl text-surface transition-colors duration-300 hover:bg-surface/10 lg:hidden"
+          >
+            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
-      <div className={cn(
-        "mx-auto flex h-20 w-full max-w-7xl items-center justify-between gap-gutter border-b px-margin transition-all duration-500 sm:px-margin-tablet lg:px-margin-desktop",
-        scrolled ? "border-primary/10" : "border-surface/20"
-      )}>
-        <Link
-          href="#home"
-          className={cn("group flex items-center gap-space-sm transition-colors duration-500", scrolled ? "text-primary" : "text-surface")}
-        >
-          <span className="flex h-10 w-10 items-center justify-center rounded-full border border-secondary/30 bg-surface-container-low p-1 shadow-sm transition-transform duration-300 group-hover:scale-105">
-            <Image src={brand.logo} alt={`${brand.name} logo`} width={42} height={32} className="h-8 w-auto object-contain" />
-          </span>
-          <span className="flex min-w-0 flex-col">
-            <span className="whitespace-nowrap font-headline-sm text-headline-sm text-base uppercase tracking-wide">{brand.name}</span>
-            <span className={cn("hidden text-[11px] uppercase tracking-[0.14em] sm:block", scrolled ? "text-secondary" : "text-secondary-fixed")}>{brand.tagline} · {brand.location}</span>
-          </span>
-        </Link>
 
-        <nav className="hidden items-center gap-1 rounded-DEFAULT border border-primary/10 bg-surface-container-low/55 p-1 xl:flex">
-          {nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "relative px-3 py-2 text-xs font-semibold uppercase tracking-[0.1em] transition-colors after:absolute after:inset-x-3 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-secondary after:transition-transform hover:after:scale-x-100",
-                scrolled ? "text-on-surface-variant hover:text-primary" : "text-surface/90 hover:text-surface"
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
-        <Link
-          href="#contact"
-          className="hidden items-center gap-1.5 rounded-DEFAULT border border-secondary-container/45 bg-gradient-to-br from-primary via-primary-container to-tertiary-container px-space-md py-space-xs text-sm font-semibold uppercase tracking-[0.1em] text-secondary-fixed shadow-[0_8px_20px_-10px_rgba(21,34,24,0.7)] transition-all hover:-translate-y-0.5 hover:border-secondary-container hover:from-secondary hover:to-primary hover:shadow-[0_12px_24px_-10px_rgba(127,86,14,0.55)] md:inline-flex"
-        >
-          Enquire Now
-          <ArrowUpRight className="h-3.5 w-3.5" />
-        </Link>
-
-        <Link
-          href="#contact"
-          className="inline-flex items-center gap-1.5 rounded-DEFAULT border border-secondary-container/45 bg-gradient-to-br from-primary via-primary-container to-tertiary-container px-space-sm py-space-xs text-xs font-semibold uppercase tracking-[0.1em] text-secondary-fixed shadow-[0_8px_20px_-10px_rgba(21,34,24,0.7)] transition-all hover:-translate-y-0.5 hover:border-secondary-container hover:from-secondary hover:to-primary hover:shadow-[0_12px_24px_-10px_rgba(127,86,14,0.55)] sm:px-space-md md:hidden"
-        >
-          Enquire Now
-          <ArrowUpRight className="h-3.5 w-3.5" />
-        </Link>
-      </div>
+      {/* Mobile / tablet nav panel */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.nav
+            id="mobile-nav"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease }}
+            className="relative overflow-hidden lg:hidden"
+          >
+            <div className="flex flex-col gap-1 px-2 pb-space-md">
+              {nav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="inline-flex items-center gap-2 py-3 text-sm font-semibold uppercase tracking-[0.1em] text-surface/85 transition-colors hover:text-surface"
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <Link
+                href="#contact"
+                onClick={() => setMenuOpen(false)}
+                className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-[12px] bg-surface px-space-md py-3 text-sm font-semibold uppercase tracking-[0.1em] text-primary shadow-[0_8px_20px_-10px_rgba(0,0,0,0.35)] transition-all hover:-translate-y-0.5"
+              >
+                Enquire Now
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

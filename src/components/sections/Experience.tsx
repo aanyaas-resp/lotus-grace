@@ -4,11 +4,9 @@ import { experience } from "@/data/siteContent";
 import { cn } from "@/lib/utils";
 
 export default function Experience() {
-  const [majestic, flavours, hospitality, comfort] = experience.cards;
-
   return (
-    <section id="experience" className="border-t border-primary/5 bg-gradient-to-b from-surface via-surface-container-low to-surface">
-      <div className="mx-auto max-w-7xl px-6 py-24 sm:px-10 md:py-32">
+    <section id="experience" className="border-t border-primary/5 bg-surface">
+      <div className="mx-auto max-w-6xl px-6 py-24 sm:px-10 md:py-32">
         <Reveal>
           <SectionHeading
             eyebrow={experience.eyebrow}
@@ -24,19 +22,21 @@ export default function Experience() {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-5">
-          <Reveal direction="left" className="lg:col-span-3">
-            <Card card={majestic} />
-          </Reveal>
-          <Reveal direction="right" delay={0.1} className="lg:col-span-2">
-            <Card card={flavours} />
-          </Reveal>
-          <Reveal direction="left" delay={0.1} className="lg:col-span-2">
-            <Card card={hospitality} />
-          </Reveal>
-          <Reveal direction="right" delay={0.15} className="lg:col-span-3">
-            <Card card={comfort} />
-          </Reveal>
+        {/* Checkerboard bento — diagonal pairs share a color, so the two dark
+            cards read as a deliberate pattern rather than a random pick */}
+        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2">
+          {experience.cards.map((card, i) => {
+            const dark = i === 1 || i === 2;
+            return (
+              <Reveal
+                key={card.title}
+                direction={i % 2 === 0 ? "left" : "right"}
+                delay={i * 0.08}
+              >
+                <Card card={card} dark={dark} index={i} />
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -45,42 +45,62 @@ export default function Experience() {
 
 type CardData = (typeof experience.cards)[number];
 
-function Card({ card }: { card: CardData }) {
+function Card({ card, dark, index }: { card: CardData; dark: boolean; index: number }) {
   return (
     <div
       className={cn(
-        "flex h-full flex-col gap-5 rounded-xl p-space-lg shadow-sm",
-        card.dark
-          ? "bg-gradient-to-br from-primary via-primary-container to-tertiary-container text-surface-container"
-          : "bg-gradient-to-br from-surface-container-low via-surface to-surface-container text-primary"
+        "relative flex h-full flex-col gap-6 overflow-hidden rounded-[1.75rem] p-8 md:p-10",
+        dark
+          ? "bg-primary text-surface shadow-[0_24px_48px_-20px_rgba(21,34,24,0.55)]"
+          : "border border-outline-variant/50 bg-surface-container-low text-primary shadow-[0_16px_36px_-24px_rgba(21,34,24,0.18)]"
       )}
     >
+      {/* Faint oversized numeral, tucked into the corner — quiet texture, not a card-kit icon badge */}
       <span
+        aria-hidden
         className={cn(
-          "text-xs tracking-[0.2em] uppercase",
-          card.dark ? "text-secondary-container" : "text-secondary"
+          "pointer-events-none absolute -right-2 -top-6 font-[family-name:var(--font-heading)] text-[7rem] leading-none",
+          dark ? "text-surface/[0.06]" : "text-primary/[0.05]"
         )}
       >
-        {card.chapter}
+        {String(index + 1).padStart(2, "0")}
       </span>
 
-      <h3 className="font-headline-md text-headline-md">
-        {card.title}
-      </h3>
+      <div className="relative flex flex-col gap-3">
+        <span
+          className={cn(
+            "text-xs tracking-[0.15em]",
+            dark ? "text-secondary-fixed" : "text-secondary"
+          )}
+        >
+          {card.chapter}
+        </span>
+        <h3 className="font-headline-md text-headline-md leading-tight">{card.title}</h3>
+      </div>
 
-      <p className={cn("text-body-md leading-relaxed", card.dark ? "text-surface-container/80" : "text-on-surface-variant")}>
+      <p
+        className={cn(
+          "relative max-w-md text-body-md leading-relaxed",
+          dark ? "text-surface/80" : "text-on-surface-variant"
+        )}
+      >
         {card.description}
       </p>
 
       {card.stats && (
-        <div className="grid grid-cols-3 gap-3 border-t border-current/10 pt-4">
+        <div
+          className={cn(
+            "relative mt-auto flex flex-wrap gap-x-8 gap-y-4 border-t pt-5",
+            dark ? "border-surface/15" : "border-outline-variant/60"
+          )}
+        >
           {card.stats.map((s) => (
             <div key={s.label} className="flex flex-col gap-0.5">
-              <span className="font-[family-name:var(--font-heading)] text-lg">{s.value}</span>
+              <span className="font-[family-name:var(--font-heading)] text-xl">{s.value}</span>
               <span
                 className={cn(
-                  "text-[10px] uppercase tracking-[0.12em]",
-                  card.dark ? "text-surface-container/60" : "text-on-surface-variant"
+                  "text-[11px] tracking-[0.08em]",
+                  dark ? "text-surface/60" : "text-on-surface-variant"
                 )}
               >
                 {s.label}
@@ -91,16 +111,25 @@ function Card({ card }: { card: CardData }) {
       )}
 
       {card.list && (
-        <ul className="flex flex-col gap-2 border-t border-current/10 pt-4">
+        <ul
+          className={cn(
+            "relative mt-auto flex flex-col gap-3 border-t pt-5",
+            dark ? "border-surface/15" : "border-outline-variant/60"
+          )}
+        >
           {card.list.map((item) => (
-            <li key={item} className="flex items-start gap-2 text-sm text-surface-container/80">
-              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary-container" />
-              {item}
+            <li key={item} className="flex items-baseline gap-3 text-sm leading-relaxed">
+              <span
+                className={cn(
+                  "h-px w-4 shrink-0 translate-y-[-3px]",
+                  dark ? "bg-secondary-fixed" : "bg-secondary"
+                )}
+              />
+              <span className={dark ? "text-surface/85" : "text-on-surface-variant"}>{item}</span>
             </li>
           ))}
         </ul>
       )}
-
     </div>
   );
 }

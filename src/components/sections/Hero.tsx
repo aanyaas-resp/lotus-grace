@@ -1,50 +1,83 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants, useReducedMotion } from "framer-motion";
+import { Crown, ArrowUpRight, MessageCircle, ChevronDown } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Media from "@/components/ui/Media";
 import { hero } from "@/data/siteContent";
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
+const container: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
+};
+
+const item: Variants = {
+  hidden: { opacity: 0, y: 22 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.85, ease } },
+};
+
 export default function Hero() {
+  const prefersReducedMotion = useReducedMotion();
+  const motionInitial = prefersReducedMotion ? "show" : "hidden";
+
   return (
     <section
       id="home"
-      className="relative -mt-20 flex min-h-[100svh] flex-col overflow-hidden bg-primary px-0 pb-8 pt-32 sm:pt-36"
+      className="relative -mt-20 flex min-h-[100svh] flex-col items-center overflow-hidden bg-primary px-0 pb-9 pt-28 sm:pt-32 lg:pt-36"
     >
+      {/* Background image, full bleed behind the whole hero */}
       <div className="absolute inset-0 z-0">
-        <Media label="Grand chandeliered banquet hall at Hotel Lotus Grace" tone="ink" lightbox={false} showLabel={false} className="h-full" />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/85 via-primary/45 to-primary/10" />
+        <Media
+          label="Grand chandeliered banquet hall at Hotel Lotus Grace"
+          tone="ink"
+          lightbox={false}
+          showLabel={false}
+          className="h-full rounded-none"
+        />
+        {/*
+          Bottom-to-top scrim: solid at the floor so the CTAs/stats always sit on
+          legible ground, fading up so the room itself breathes near the top of frame
+          where there's only the small badge.
+        */}
+        <div className="absolute inset-0 bg-gradient-to-t from-primary from-15% via-primary/75 via-55% to-primary/10" />
       </div>
 
-      <div aria-hidden className="pointer-events-none absolute inset-4 z-10 border border-secondary-fixed/20 sm:inset-6" />
-      <div aria-hidden className="pointer-events-none absolute bottom-28 left-6 top-1/2 hidden w-px bg-secondary-container/60 lg:left-12 lg:block" />
-
-      {/* Concierge badge */}
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        className="absolute right-8 top-1/2 z-20 hidden -translate-y-1/2 items-center gap-2 border border-secondary-container/45 bg-primary/45 px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-secondary-fixed backdrop-blur-sm md:flex lg:right-14"
+      {/* Concierge badge — small centered pill up top, same on every breakpoint */}
+      {/* <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.15, ease }}
+        className="relative z-20 mt-2 inline-flex items-center gap-2 border border-secondary-container/45 bg-primary/45 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-secondary-fixed backdrop-blur-sm sm:px-5 sm:py-2.5"
       >
-        <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
+        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" />
         {hero.conciergeBadge}
-      </motion.div>
+      </motion.div> */}
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center gap-7 px-margin py-12 sm:gap-8 sm:px-margin-tablet sm:py-16 lg:px-margin-desktop">
+      <motion.div
+        variants={container}
+        initial={motionInitial}
+        animate="show"
+        className="relative z-10 mx-auto flex w-full max-w-none flex-1 flex-col items-center justify-center gap-6 px-margin py-10 text-center sm:gap-7 sm:px-margin-tablet sm:py-14 lg:gap-8 lg:py-16"
+      >
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="inline-flex w-fit items-center gap-space-xs border-b border-secondary-container/70 pb-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-fixed"
+          variants={item}
+          className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-fixed sm:text-xs"
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
+          <Crown className="h-3.5 w-3.5 shrink-0 text-secondary" strokeWidth={1.75} aria-hidden="true" />
           {hero.badge}
         </motion.div>
 
+        <motion.span
+          variants={item}
+          aria-hidden
+          className="h-px w-16 bg-gradient-to-r from-transparent via-secondary-container/70 to-transparent"
+        />
+
         <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="max-w-5xl font-display-xl font-normal text-[clamp(3.2rem,7.5vw,6.5rem)] leading-[0.98] tracking-normal text-surface"
+          variants={item}
+          className="w-full text-balance font-display-xl text-display-lg text-surface lg:text-display-xl"
         >
           {hero.headline}
           <br />
@@ -52,48 +85,83 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="max-w-xl text-base font-light leading-[1.75] text-surface-container sm:text-lg"
+          variants={item}
+          className="max-w-xl font-light text-body-sm text-surface-container sm:text-body-md lg:text-body-lg"
         >
           {hero.body}
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease }}
-          className="mt-3 flex flex-wrap items-center gap-4"
+          variants={item}
+          className="mt-1 flex w-full flex-col items-center gap-3 sm:mt-3 sm:w-auto sm:flex-row sm:justify-center sm:gap-4"
         >
-          <Button href={hero.ctaPrimary.href} variant="primary" className="!bg-surface !text-primary hover:!bg-secondary-container">
-            {hero.ctaPrimary.label}
+          <Button
+            href={hero.ctaPrimary.href}
+            variant="primary"
+            showArrow={false}
+            className="!w-full justify-center !bg-surface !text-primary hover:!bg-secondary-container sm:!w-auto"
+          >
+            <span className="inline-flex items-center gap-1.5">
+              {hero.ctaPrimary.label}
+              <ArrowUpRight
+                className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                strokeWidth={1.75}
+              />
+            </span>
           </Button>
-          <Button href={hero.ctaSecondary.href} variant="outlined" showArrow={false}>
-            {hero.ctaSecondary.label}
+
+          <Button
+            href={hero.ctaSecondary.href}
+            variant="whatsapp"
+            showArrow={false}
+            className="!w-full justify-center sm:!w-auto"
+          >
+            <span className="inline-flex items-center gap-2">
+              <MessageCircle className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+              {hero.ctaSecondary.label}
+            </span>
           </Button>
         </motion.div>
-      </div>
+      </motion.div>
 
-      {/* Stat bar */}
+      {/* Stat row — centered under the fold. Grid on phones, single divided row from sm up. */}
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="relative z-10 mx-auto w-full max-w-7xl px-margin sm:px-margin-tablet lg:px-margin-desktop"
+        variants={item}
+        initial={motionInitial}
+        animate="show"
+        className="relative z-10 mx-auto w-full max-w-3xl px-margin pb-1 sm:px-margin-tablet"
       >
-        <div className="grid w-full grid-cols-2 items-center gap-x-4 gap-y-4 border border-surface/15 bg-primary/55 p-space-sm text-center backdrop-blur-xl sm:flex sm:justify-between sm:p-space-md sm:text-left">
+        <div className="grid grid-cols-2 gap-x-3 gap-y-5 border-t border-surface/15 pt-6 sm:hidden">
           {hero.stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center gap-1 sm:items-start sm:text-left">
-              <span className="font-[family-name:var(--font-heading)] text-xl text-secondary-container">
+            <div key={stat.label} className="flex flex-col items-center gap-1 text-center">
+              <span className="font-[family-name:var(--font-heading)] text-lg text-secondary-container">
                 {stat.value}
               </span>
-              <span className="text-[0.65rem] tracking-[0.1em] uppercase text-surface-container/80">
+              <span className="text-[0.62rem] leading-tight tracking-[0.1em] uppercase text-surface-container/80">
                 {stat.label}
               </span>
             </div>
           ))}
         </div>
+
+        <div className="hidden items-center justify-center gap-x-10 border-t border-surface/15 pt-7 sm:flex">
+          {hero.stats.map((stat, i) => (
+            <div key={stat.label} className="flex items-center gap-x-10">
+              {i !== 0 && <span aria-hidden className="h-8 w-px bg-surface/15" />}
+              <div className="flex flex-col items-center gap-1 text-center">
+                <span className="font-[family-name:var(--font-heading)] text-xl text-secondary-container">
+                  {stat.value}
+                </span>
+                <span className="text-[0.65rem] leading-tight tracking-[0.1em] uppercase text-surface-container/80">
+                  {stat.label}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
       </motion.div>
 
+ 
       {/* Divider mark */}
       <div
         aria-hidden

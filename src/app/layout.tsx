@@ -6,6 +6,19 @@ import SmoothScroll from "@/components/layout/SmoothScroll";
 
 const siteUrl = "https://lotusgrace.vercel.app";
 
+/*
+  Font pairing: Playfair Display (headings) + Plus Jakarta Sans (body).
+  This is the pairing already in place, and it's the right one to keep rather
+  than swap:
+  - Playfair Display is the textbook "luxury editorial" display serif — it's
+    what shows up first in every serif+sans luxury/hospitality pairing
+    recommendation, and it already carries the brand's regal-wedding tone.
+  - Plus Jakarta Sans reads warmer and slightly more distinctive than the more
+    obvious alternative (Inter). Inter is excellent, but it's also the default
+    body font on a huge share of AI-generated and templated sites — for a brand
+    explicitly going for "doesn't look AI-made," Jakarta's rounder, friendlier
+    letterforms are the better fit while staying just as legible at small sizes.
+*/
 const playfairDisplay = Playfair_Display({
   variable: "--font-heading",
   subsets: ["latin"],

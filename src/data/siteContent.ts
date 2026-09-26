@@ -11,7 +11,7 @@ export const brand = {
   email: "celebrations@lotusgrace.in",
   address:
     "7/1, Site-4, Industrial Area, Sahibabad, Ghaziabad, Uttar Pradesh 201010",
-  hours: "Concierge available daily, 9:00 AM – 10:00 PM",
+  hours: "Open daily, 9:00 AM – 10:00 PM",
   instagramUrl: "https://instagram.com/_lotusgrace",
   instagramHandle: "@_lotusgrace",
   reviewsUrl:
@@ -21,132 +21,133 @@ export const brand = {
 };
 
 export const ribbon =
-  "✦ Sahibabad's Premier Banquet Destination — Where Royal Weddings Meet Regal Hospitality ✦";
+  "Now booking weddings, engagements and events for the coming season — call us to check your date";
 
 export const nav = [
+  { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Celebrations", href: "#celebrations" },
-  { label: "The Experience", href: "#experience" },
+  { label: "Experience", href: "#experience" },
   { label: "Gallery", href: "#gallery" },
   { label: "Reviews", href: "#reviews" },
   { label: "Visit Us", href: "#contact" },
 ];
 
 export const hero = {
-  badge: "A Legacy of Royal Celebrations",
-  headline: "Where Every Celebration",
-  headlineAccent: "Feels Extraordinary",
-  body: "Sahibabad's most distinguished banquet destination. Where regal architecture, heirloom-worthy hospitality and bespoke grandeur unite to immortalize your most sacred moments.",
+  badge: "A Banquet Venue in Sahibabad",
+  headline: "A Beautiful Setting for",
+  headlineAccent: "Your Big Celebration",
+  body: "Sahibabad's go-to venue for weddings, engagements and corporate events — spacious halls, good food, and a team that takes care of the details.",
   ctaPrimary: { label: "Enquire Now", href: "#contact" },
   ctaSecondary: {
-    label: "WhatsApp Us · Instant Concierge",
+    label: "WhatsApp Us",
     href: `https://wa.me/${brand.whatsapp}?text=Hi%20Lotus%20Grace%2C%20I%27d%20like%20to%20enquire%20about%20booking.`,
   },
-  conciergeBadge: "Chief Concierge · Instant Response",
+  conciergeBadge: "Quick Response Team",
   stats: [
-    { value: "1,200+", label: "Guests Hosted in Grandeur" },
-    { value: "4", label: "Grand Banquet Halls" },
-    { value: "500+", label: "Valet Parking Capacity" },
-    { value: "100%", label: "Multi-Cuisine Catering" },
+    { value: "1,200+", label: "Guest Capacity" },
+    { value: "4", label: "Banquet Halls" },
+    { value: "500+", label: "Parking Spaces" },
+    { value: "In-House", label: "Catering Team" },
   ],
 };
 
 export const about = {
-  eyebrow: "Two Decades of Quiet Elegance",
+  eyebrow: "A Venue Sahibabad Trusts",
   headline: "More Than a Venue.",
-  headlineAccent: "A Living Heritage of Elegance.",
+  headlineAccent: "A Place Your Family Will Remember.",
   paragraphs: [
-    "Conceived as an ode to timeless Awadhi courtliness and Mughal symmetry, Hotel Lotus Grace stands as Sahibabad's sanctuary for generational rites of passage. We believe true celebratory splendour is not merely gold-leaf and crystal; it is the effortless peace of mind that comes when every guest is welcomed as royalty.",
-    "Strategically positioned within Sahibabad's Industrial Area Site 4, with whisper-quiet acoustic separation and monumental 24-foot archways, our venue blends the sacred solemnity of traditional Vedic phases with the refined technological precision of contemporary global galas.",
+    "Hotel Lotus Grace has hosted weddings, engagements and family celebrations in Sahibabad, Ghaziabad for years. We keep things simple: spacious halls, genuine hospitality, and a team that handles the details so you don't have to.",
+    "Set inside Sahibabad's Industrial Area Site 4, the venue offers easy access, ample parking and fully soundproofed halls — so your celebration stays private and peaceful, whatever's happening outside.",
   ],
   features: [
     {
       icon: "column",
-      title: "Architectural Majesty",
+      title: "Spacious Halls",
       description:
-        "24-foot soaring ceilings, imported crystal chandeliers and hand-carved marble finishes throughout.",
+        "24-foot ceilings and grand interiors, comfortable for both intimate gatherings and large celebrations.",
     },
     {
       icon: "utensils",
-      title: "Heirloom Cuisines",
+      title: "Multi-Cuisine Catering",
       description:
-        "Master Maharaj-crafted Continental, Awadhi and Multi-regional royal degustations.",
+        "Our in-house chefs prepare Indian, Continental and regional menus tailored to your guests.",
     },
     {
       icon: "concierge",
-      title: "Dedicated Concierge",
+      title: "Personal Event Manager",
       description:
-        "A single decorated celebration director assigned exclusively to your family.",
+        "One dedicated coordinator with you from the first meeting to the final toast.",
     },
   ],
-  quoteImageCaption: "Cherished wedding memories framed in timeless opulence.",
+  quoteImageCaption: "Every celebration here becomes a memory worth keeping.",
 };
 
 export const milestones = {
-  eyebrow: "Two Rites, One Reverence",
+  eyebrow: "One Venue, Every Occasion",
   headline: "A Grand Stage for Every Milestone",
   intro:
-    "From the soaring arches to the tender spices of our midnight royal biryani, our customisable pillarless ballrooms adapt with limitless grace.",
+    "From wedding baraats to birthday parties, our pillarless halls adapt to whatever you're celebrating — with the space and staff to do it properly.",
   tabs: [
     {
       id: "weddings",
-      label: "Royal Weddings",
-      kicker: "The Royal Wedding Legacy",
-      title: "Sacred Rituals,",
-      titleAccent: "Monumental Grandeur",
+      label: "Weddings",
+      kicker: "For Your Big Day",
+      title: "Traditional Rituals,",
+      titleAccent: "Handled With Care",
       description:
-        "Grand baraat reception with dedicated dhol-wala protocols, majestic floral mandap stage under 24-ft ceilings, opulent royal bridal dressing suites with attar aromatherapy stations, and antihaul royal dining for up to 1,200 honoured guests.",
-      tags: ["Baraat Welcome & Aarti", "Recommended for Royal Alliances"],
-      linkLabel: "Request Wedding Brochure & Date Availability",
+        "We take care of the baraat welcome, set up the mandap under our 24-foot ceilings, and offer a private bridal suite for getting ready. Our halls seat up to 1,200 guests for the reception dinner.",
+      tags: ["Baraat & Aarti Welcome", "Seats up to 1,200"],
+      linkLabel: "Get Our Wedding Brochure & Check Dates",
     },
     {
       id: "engagements",
       label: "Engagements & Roka",
-      kicker: "The Beginning of Always",
-      title: "Intimate Vows,",
-      titleAccent: "Boundless Elegance",
+      kicker: "The First Celebration",
+      title: "A Smaller Occasion,",
+      titleAccent: "Just as Special",
       description:
-        "Curated ring ceremony staging with candlelit centrepieces, private family reception lounges, bespoke floral rokas décor and a dedicated photography walk for every intimate exchange of promises.",
-      tags: ["Candlelit Ring Staging", "Recommended for Family Rokas"],
-      linkLabel: "Request Engagement Brochure & Date Availability",
+        "For ring ceremonies and roka functions, we set up an intimate staging area, candlelit décor, and a private lounge for family. Our team also arranges a photographer to capture the moment.",
+      tags: ["Ring Ceremony Staging", "Private Family Lounge"],
+      linkLabel: "Get Our Engagement Brochure & Check Dates",
     },
     {
       id: "parties",
-      label: "Birthdays & Socials",
-      kicker: "Good Times, Regally Kept",
-      title: "Milestone Moments,",
-      titleAccent: "Beautifully Hosted",
+      label: "Birthdays & Parties",
+      kicker: "Any Occasion Worth Marking",
+      title: "Birthdays, Anniversaries,",
+      titleAccent: "and Everything In Between",
       description:
-        "Themed décor concepts, live chaat and dessert counters, curated entertainment staging and dedicated event choreography for birthdays, anniversaries and every reason worth celebrating.",
-      tags: ["Themed Décor Studio", "Recommended for Milestone Socials"],
-      linkLabel: "Request Party Brochure & Date Availability",
+        "Choose a décor theme, add a live chaat or dessert counter, and let our team handle the planning and setup — for birthdays, anniversaries, or any celebration you have in mind.",
+      tags: ["Themed Décor", "Live Food Counters"],
+      linkLabel: "Get Our Party Brochure & Check Dates",
     },
     {
       id: "corporate",
-      label: "Corporate Galas",
-      kicker: "Beyond Business as Usual",
-      title: "Sovereign Boardrooms,",
-      titleAccent: "Signature Galas",
+      label: "Corporate Events",
+      kicker: "For Business Gatherings",
+      title: "Conferences and Galas,",
+      titleAccent: "Run Smoothly",
       description:
-        "Pillarless auditoriums with cinema-grade AV and acoustics, executive breakout boardrooms, curated business dining and white-glove hospitality for annual summits and leadership galas.",
-      tags: ["Cinema-Grade AV Suite", "Recommended for Corporate Galas"],
-      linkLabel: "Request Corporate Brochure & Date Availability",
+        "Our pillarless hall comes with AV and sound equipment built in, plus separate breakout rooms for meetings. We handle catering and hospitality so your team can focus on the event.",
+      tags: ["AV & Sound Included", "Breakout Meeting Rooms"],
+      linkLabel: "Get Our Corporate Brochure & Check Dates",
     },
   ],
 };
 
 export const experience = {
-  eyebrow: "Two Sides of Splendour, One Standard",
-  headline: "Anatomy of an Unforgettable Experience",
+  eyebrow: "What's Included",
+  headline: "What You Can Expect",
   intro:
-    "From the soaring arches to the tender spices of our midnight royal biryani, every micro-detail is choreographed to delight generations of families.",
+    "From the space itself to the food and the service, here's what goes into every event we host.",
   cards: [
     {
-      chapter: "Chapter 01",
-      title: "The Majestic Spaces",
+      chapter: "The Halls",
+      title: "Spacious, Pillar-Free Halls",
       dark: false,
       description:
-        "Three pillarless ballrooms engineered with unobstructed sightlines so no guest misses the holy circumambulation or the exchange of garlands. Pre-function foyer spaces allow seamless guest-welcoming rituals.",
+        "Three pillar-free halls with clear sightlines from every seat, so no one misses the ceremony. Each hall has its own foyer where guests can arrive and settle in before moving inside.",
       stats: [
         { value: "14 ft", label: "Ceiling Height" },
         { value: "Zero", label: "Pillars" },
@@ -155,36 +156,36 @@ export const experience = {
       list: undefined as string[] | undefined,
     },
     {
-      chapter: "Chapter 02",
-      title: "The Royal Flavours",
+      chapter: "The Food",
+      title: "Food People Actually Talk About",
       dark: true,
       description:
-        "Our culinary team spans traditional Awadhi banquets, live Peruvian-Ghazal grills, wood-fired artisanal breads, and decadent French confectionery.",
+        "Our kitchen team serves everything from classic North Indian and Awadhi dishes to live grill counters, fresh tandoor breads, and a dessert counter guests remember.",
       stats: undefined as { value: string; label: string }[] | undefined,
       list: [
-        "Separate Dedicated Pure-Veg Catering Kitchen",
-        "Live Interactive Chaat & Tandoor Counters",
-        "Custom-Tailored Regional Thali Pairings",
+        "Separate kitchen for pure vegetarian catering",
+        "Live chaat and tandoor counters",
+        "Menus customised to your region and preferences",
       ] as string[] | undefined,
     },
     {
-      chapter: "Chapter 03",
-      title: "The Hospitality",
+      chapter: "The Service",
+      title: "Attentive, Not Overbearing Staff",
       dark: false,
       description:
-        "White-glove service anchored in dedication. Serve staff trained in warm, restrained hospitality replenish every guest's beverages and unspoken needs before they are voiced.",
+        "Our service staff are trained to be attentive without hovering — topping up drinks, clearing plates, and helping guests find their way, so you don't have to think about it.",
       stats: undefined as { value: string; label: string }[] | undefined,
       list: undefined as string[] | undefined,
     },
     {
-      chapter: "Chapter 04",
-      title: "The Sovereign Comfort",
+      chapter: "The Comfort",
+      title: "Comfort for the Host's Family Too",
       dark: false,
       description:
-        "A celebration should be relaxing for the hosts, too. Enjoy spacious temperature-controlled bridal-family suites with salon-grade mirrors, express VIP entry for kin, and effortless multi-tier valet cadence.",
+        "Hosting a big event is tiring enough without worrying about your own comfort. We provide air-conditioned family suites with proper mirrors and lighting, a separate entry for close family, and valet parking that keeps things moving outside.",
       stats: [
         { value: "500+", label: "Valet Capacity" },
-        { value: "Air-Cooled", label: "Bridal Lounges" },
+        { value: "Air-Conditioned", label: "Family Suites" },
       ] as { value: string; label: string }[] | undefined,
       list: undefined as string[] | undefined,
     },
@@ -192,104 +193,104 @@ export const experience = {
 };
 
 export const gallery = {
-  eyebrow: "Visual Splendour, Revisited",
-  headline: "Moments Immersed in Gold & Grace",
-  tabs: ["All", "Weddings & Phera", "Engagements & Parties", "Catering & Events"],
+  eyebrow: "See It For Yourself",
+  headline: "A Look Around the Venue",
+  tabs: ["All", "Weddings", "Engagements & Parties", "Food & Catering"],
   images: [
-    { id: "gallery-1", tab: "Weddings & Phera", size: "wide" },
-    { id: "gallery-2", tab: "Weddings & Phera", size: "tall" },
+    { id: "gallery-1", tab: "Weddings", size: "wide" },
+    { id: "gallery-2", tab: "Weddings", size: "tall" },
     { id: "gallery-3", tab: "Engagements & Parties", size: "tall" },
     { id: "gallery-4", tab: "Engagements & Parties", size: "wide" },
-    { id: "gallery-5", tab: "Catering & Events", size: "wide" },
-    { id: "gallery-6", tab: "Weddings & Phera", size: "wide" },
-    { id: "gallery-7", tab: "Catering & Events", size: "wide" },
+    { id: "gallery-5", tab: "Food & Catering", size: "wide" },
+    { id: "gallery-6", tab: "Weddings", size: "wide" },
+    { id: "gallery-7", tab: "Food & Catering", size: "wide" },
   ],
-  linkLabel: "Follow the Moments on Instagram",
+  linkLabel: "Follow Us on Instagram",
 };
 
 export const whyChooseUs = {
-  eyebrow: "Two Decades, Unbroken Standard",
-  headline: "Why Families Entrust Their Most Sacred Days to Us",
+  eyebrow: "Why Choose Us",
+  headline: "Why Families Choose Lotus Grace",
   intro:
-    "When lifetime commitments and family honour are honoured under our roof, we leave no stone unturned in delivering effortless perfection.",
+    "We know how much these days matter, so we focus on getting the details right — from the first meeting to the last guest leaving.",
   features: [
     {
       icon: "sparkle",
-      title: "Unmatched Ambience",
+      title: "Great Ambience",
       description:
-        "24-foot soaring ceilings, warm ambient illumination, and hand-selected floral art that transform every wedding into a sovereign spectacle.",
-      linkLabel: "Chapter 01",
+        "24-foot ceilings, warm lighting, and fresh floral décor that make every event feel special.",
+      linkLabel: "Learn More",
     },
     {
       icon: "wifi",
-      title: "Seamless Tech",
+      title: "Reliable Tech & Power",
       description:
-        "In-house acoustical direction, concert-grade sound and lighting arrays, 100% backup generator power, and seamless live-streaming for global guests.",
-      linkLabel: "Chapter 02",
+        "Good sound and lighting equipment, full power backup, and live streaming for guests who can't make it in person.",
+      linkLabel: "Learn More",
     },
     {
       icon: "hands",
-      title: "Gracious Care",
+      title: "A Dedicated Event Manager",
       description:
-        "One dedicated event director assigned exclusively to your family, from first tasting to the final aarti, managing every coordination flawlessly.",
-      linkLabel: "Chapter 03",
+        "One person from our team stays with you from the first meeting through to the event itself, so you always know who to call.",
+      linkLabel: "Learn More",
     },
     {
       icon: "location",
       title: "Prime Location",
       description:
-        "Sitting at Sahibabad's Industrial hub, within 10–15 minutes of Anand Vihar ISBT, Vaishali and Indirapuram — with abundant multi-tier valet parking.",
-      linkLabel: "Chapter 04",
+        "Easy to reach from Anand Vihar, Vaishali and Indirapuram — usually 10–15 minutes away — with plenty of valet parking on site.",
+      linkLabel: "Learn More",
     },
   ],
 };
 
 export const testimonials = {
-  eyebrow: "Unfiltered Royal Hospitality",
-  headline: "Words From Our Royal Hosts",
-  body: "The care, architecture and culinary precision at Hotel Lotus Grace turn every celebration into a lasting family memory.",
+  eyebrow: "What Our Guests Say",
+  headline: "Reviews From Real Guests",
+  body: "A few words from families and companies who've celebrated with us.",
   rating: "4.4",
   reviewCount: "2,347 Google reviews",
   reviews: [
     {
       quote:
-        "The wedding of our daughter was pure magic. Our guests still speak about the live chaat counter and how gracefully the Dal Bakhara arrived at every table.",
-      body: "Every detail — from the pheras ceremony to the gentle fragrance of fresh mogra flowers everywhere — was carried out with flawless perfection.",
+        "Our daughter's wedding went beautifully. People are still talking about the chaat counter.",
+      body: "The team managed the pheras ceremony smoothly and the flowers stayed fresh throughout the day. We didn't have to worry about a thing.",
       name: "Mr. & Mrs. Gupta",
-      context: "Anand Vihar, Delhi · Daughter's Wedding Reception",
+      context: "Anand Vihar, Delhi — Daughter's Wedding",
     },
     {
       quote:
-        "The flawless event coordination meant every single guest had a crystal-clear view of the pheras without craning their necks.",
-      body: "The bridal entry via the floral archway made our preparation stress-free. Their concierge managed hundreds of guests without a single hitch.",
+        "Every guest had a clear view of the pheras — no one had to crane their neck to see.",
+      body: "The team coordinated everything so well that we barely had to think about logistics on the day. Would recommend for a stress-free wedding.",
       name: "Dr. Rohan & Neha Verma",
-      context: "Indirapuram, Ghaziabad · Royal Wedding & Phera",
+      context: "Indirapuram, Ghaziabad — Wedding",
     },
     {
       quote:
-        "Hosted our annual corporate leadership gala here. Flawless AV, pristine stage acoustics, and truly regal service.",
-      body: "Their staff smoothly hosted 500+ executives without a single miscalculation. Highly recommended for premium corporate banquets in NCR.",
-      name: "Director, Regional Operations",
-      context: "Tata Consumer Products · Delhi NCR Annual Summit",
+        "We held our annual leadership summit here. The AV setup and sound were spot on.",
+      body: "Staff handled 500-plus attendees without any hiccups. A solid option for corporate events in the NCR area.",
+      name: "Director of Operations",
+      context: "Regional FMCG Company — Annual Summit",
     },
   ],
-  linkLabel: "Discover More Guest Experiences on Google",
+  linkLabel: "Read More Reviews on Google",
 };
 
 export const contact = {
-  eyebrow: "Begin Your Celebration",
-  headline: "Reserve Your Auspicious Date",
-  body: "Schedule a private venue walkthrough and personalised culinary tasting session with our Chief Celebration Director.",
+  eyebrow: "Get In Touch",
+  headline: "Check Availability for Your Date",
+  body: "Book a venue tour and food tasting session with our events team.",
   eventTypes: [
-    "Royal Wedding & Pheras",
-    "Engagement & Roka",
-    "Birthday & Social",
-    "Corporate Gala",
+    "Wedding",
+    "Engagement / Roka",
+    "Birthday / Social Event",
+    "Corporate Event",
   ],
   guestOptions: ["0–100", "100–300", "300–600", "600+"],
-  submitLabel: "Request Personalised Quote & Date Availability",
-  privacyNote: "Privacy Kept · No Spam Guarantee · Confirmed Within 24 Hours",
-  cardBadge: "Direct Concierge Line",
+  submitLabel: "Request a Quote",
+  privacyNote: "We'll get back to you within 24 hours. No spam, ever.",
+  cardBadge: "Call Us Directly",
   cta2: {
     label: "Chat With Us on WhatsApp",
     href: `https://wa.me/${brand.whatsapp}?text=Hi%20Lotus%20Grace%2C%20I%27d%20like%20to%20enquire%20about%20booking.`,
@@ -298,35 +299,34 @@ export const contact = {
 
 export const footer = {
   brandDescription:
-    "A distinguished heritage of impeccable celebrations in Sahibabad, curated architecture, grand banquets, and signature global royal hospitality.",
-  tagline: "Where Every Royal Wedding & Corporate Gala Finds Its Home.",
-  subtagline: "A timeless destination for grand celebrations, curated hospitality and priceless family memories.",
+    "A banquet venue in Sahibabad, Ghaziabad, hosting weddings, engagements and corporate events.",
+  tagline: "A venue for weddings, celebrations and corporate events.",
+  subtagline: "Come see the space for yourself — book a visit anytime.",
   year: new Date().getFullYear(),
   columns: [
     {
       title: "Celebrations",
       links: [
-        { label: "Weddings & Phera", href: "#celebrations" },
-        { label: "Engagements & Rokas", href: "#celebrations" },
-        { label: "Royal Engagements", href: "#celebrations" },
-        { label: "Milestone Birthdays", href: "#celebrations" },
-        { label: "Corporate Galas & Summits", href: "#celebrations" },
+        { label: "Weddings", href: "#celebrations" },
+        { label: "Engagements & Roka", href: "#celebrations" },
+        { label: "Birthdays & Parties", href: "#celebrations" },
+        { label: "Corporate Events", href: "#celebrations" },
       ],
     },
     {
       title: "Quick Links",
       links: [
-        { label: "Our Legacy", href: "#about" },
+        { label: "About Us", href: "#about" },
         { label: "Gallery", href: "#gallery" },
-        { label: "Banquet Halls Tour", href: "#experience" },
-        { label: "Guest Reviews", href: "#reviews" },
-        { label: "Book a Visit", href: "#contact" },
+        { label: "Halls & Facilities", href: "#experience" },
+        { label: "Reviews", href: "#reviews" },
+        { label: "Contact Us", href: "#contact" },
       ],
     },
   ],
   directConnect: {
-    title: "Direct Connect & Tours",
-    googleBadge: "Google Recommended",
+    title: "Contact & Tours",
+    googleBadge: "Highly Rated on Google",
   },
-  bottomNote: "Where Every Royal Wedding & Corporate Gala Finds Its Home.",
+  bottomNote: "A trusted venue for weddings and events in Ghaziabad.",
 };

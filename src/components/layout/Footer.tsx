@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { footer, brand } from "@/data/siteContent";
@@ -5,20 +6,24 @@ import { footer, brand } from "@/data/siteContent";
 export default function Footer() {
   return (
     <footer className="bg-primary text-surface-container-high">
-      <div className="mx-auto max-w-7xl px-margin py-16 sm:px-margin-tablet lg:px-margin-desktop lg:py-20">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-10">
+      <div className="mx-auto max-w-7xl px-margin py-12 sm:px-margin-tablet lg:px-margin-desktop lg:py-16">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-10">
           <div className="flex flex-col gap-space-sm lg:col-span-5">
             <div className="flex items-center gap-space-xs">
-              <img src={brand.logo} alt={`${brand.name} logo`} className="h-8 w-auto object-contain" />
+              <Image
+                src={brand.logo}
+                alt={`${brand.name} logo`}
+                width={52}
+                height={42}
+                className="h-8 w-auto object-contain"
+              />
               <span className="font-headline-sm uppercase tracking-wider text-secondary-fixed">
                 {brand.shortName}
               </span>
             </div>
-            <p className="max-w-sm text-sm text-surface-container-highest">
-              {footer.brandDescription}
-            </p>
+            <p className="max-w-sm text-sm text-surface-container-highest">{footer.brandDescription}</p>
             <span className="flex items-start gap-2 text-xs leading-relaxed text-secondary-fixed-dim">
-              <MapPin className="mr-1 inline-block h-3.5 w-3.5" />
+              <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0" />
               {brand.address}
             </span>
             <Link
@@ -50,21 +55,28 @@ export default function Footer() {
             </div>
           ))}
 
-          <div className="flex flex-col gap-space-sm border-l border-surface/15 pl-5 lg:col-span-3">
+          <div className="flex flex-col gap-space-sm lg:col-span-3 lg:border-l lg:border-surface/15 lg:pl-5">
             <span className="text-xs font-semibold uppercase tracking-[0.16em] text-secondary-fixed">
               Direct Contact
             </span>
-            <a href={`tel:${brand.phone.replace(/\s/g, "")}`} className="flex items-center gap-2 text-sm text-surface-container-highest transition-colors hover:text-secondary-fixed">
-              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-secondary-fixed" />
+            <a
+              href={`tel:${brand.phone.replace(/\s/g, "")}`}
+              className="flex items-center gap-2 text-sm text-surface-container-highest transition-colors hover:text-secondary-fixed"
+            >
+              <Phone className="h-4 w-4 shrink-0 text-secondary-fixed" />
               {brand.phone}
             </a>
-            <a href={`mailto:${brand.email}`} className="flex items-center gap-2 text-sm text-surface-container-highest transition-colors hover:text-secondary-fixed">
+            <a
+              href={`mailto:${brand.email}`}
+              className="flex items-center gap-2 text-sm text-surface-container-highest transition-colors hover:text-secondary-fixed"
+            >
               <Mail className="h-4 w-4 shrink-0 text-secondary-fixed" />
               {brand.email}
             </a>
             <p className="mt-space-xs text-xs leading-relaxed text-surface-container-highest">
-              Daily venue tours from 10 AM - 8 PM.
-              <br />Prior RSVP recommended.
+              Daily venue tours from 10 AM – 8 PM.
+              <br />
+              Prior RSVP recommended.
             </p>
           </div>
         </div>
@@ -72,10 +84,17 @@ export default function Footer() {
 
       <div className="border-t border-surface/10 px-6 py-6 sm:px-10">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 text-xs text-on-primary-container sm:flex-row sm:items-center sm:justify-between">
-          <p>© {footer.year} {brand.name}. {brand.legalName}. All rights reserved.</p>
+          <p>
+            © {footer.year} {brand.name}. {brand.legalName}. All rights reserved.
+          </p>
           <p>
             Website designed &amp; developed by{" "}
-            <a href="https://aniketwebdev.in" target="_blank" rel="noopener noreferrer" className="font-semibold text-secondary-fixed transition-colors hover:text-surface">
+            <a
+              href="https://aniketwebdev.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-secondary-fixed transition-colors hover:text-surface"
+            >
               aniketwebdev.in
             </a>
           </p>
