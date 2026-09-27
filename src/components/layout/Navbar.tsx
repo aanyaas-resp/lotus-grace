@@ -32,14 +32,22 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
-  // Close on Escape
+  // Close on Escape, and auto-close if the viewport grows past the mobile breakpoint
+  // (e.g. a tablet rotated to landscape while the menu was open)
   useEffect(() => {
     if (!menuOpen) return;
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") setMenuOpen(false);
     };
+    const onResize = () => {
+      if (window.innerWidth >= 1024) setMenuOpen(false);
+    };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", onResize);
+    };
   }, [menuOpen]);
 
   function handlePointerMove(e: ReactMouseEvent<HTMLElement>) {
@@ -55,10 +63,11 @@ export default function Navbar() {
     <header
       onMouseMove={handlePointerMove}
       onMouseLeave={() => setSheen((s) => ({ ...s, active: false }))}
+      style={{ top: "max(0.625rem, calc(env(safe-area-inset-top, 0px) + 0.375rem))" }}
       className={cn(
-        "fixed left-1/2 top-2.5 z-50 w-[calc(100vw-2.5rem)] -translate-x-1/2 overflow-hidden rounded-xl",
+        "fixed inset-x-3 z-50 w-auto overflow-hidden rounded-xl sm:inset-x-5",
         "bg-gradient-to-b from-primary/55 via-primary/65 to-primary/75 backdrop-blur-2xl backdrop-saturate-150",
-        "border border-surface/15 transition-shadow duration-500 lg:w-fit lg:max-w-[calc(100vw-2.5rem)]",
+        "border border-surface/15 transition-shadow duration-500 lg:left-1/2 lg:right-auto lg:w-fit lg:max-w-[calc(100vw-2.5rem)] lg:-translate-x-1/2",
         scrolled
           ? "shadow-[inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.18),0_18px_44px_-18px_rgba(21,34,24,0.6)]"
           : "shadow-[inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-1px_0_rgba(0,0,0,0.12),0_10px_30px_-16px_rgba(21,34,24,0.4)]"
@@ -70,7 +79,8 @@ export default function Navbar() {
         className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-surface/80 to-transparent"
       />
 
-      {/* Pointer-tracked glossy highlight — desktop only */}
+      {/* Pointer-tracked glossy highlight — desktop only (pointer:fine avoids sticky
+          highlights on touch devices that support hover, e.g. some tablets/laptops-hybrids) */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 hidden transition-opacity duration-300 lg:block"
@@ -85,7 +95,7 @@ export default function Navbar() {
       <div className="relative mx-auto flex h-14 w-full items-center justify-between gap-gutter px-2 sm:h-16 lg:w-max lg:max-w-full">
         {/* Logo + links, grouped as one left-side cluster so the gap after the logo stays fixed
             instead of justify-between stretching it to fill the row. */}
-        <div className="flex min-w-0 items-center gap-8">
+        <div className="flex min-w-0 items-center gap-4 sm:gap-8">
           <Link
             href="#home"
             onClick={() => setMenuOpen(false)}
@@ -103,7 +113,7 @@ export default function Navbar() {
           </Link>
 
           {/* Links — plain, no wrapping box/border, just an underline on hover */}
-          <nav className="hidden items-center gap-6 lg:flex">
+          <nav className="hidden items-center gap-5 lg:flex xl:gap-6">
             {nav.map((item) => (
               <Link
                 key={item.href}
@@ -139,7 +149,8 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile / tablet nav panel */}
+      {/* Mobile / tablet nav panel — capped height + internal scroll so it never
+          overflows the viewport on short phones (landscape, older iPhones, etc.) */}
       <AnimatePresence>
         {menuOpen && (
           <motion.nav
@@ -150,7 +161,10 @@ export default function Navbar() {
             transition={{ duration: 0.35, ease }}
             className="relative overflow-hidden lg:hidden"
           >
-            <div className="flex flex-col gap-1 px-2 pb-space-md">
+            <div
+              className="flex max-h-[70svh] flex-col gap-1 overflow-y-auto px-2 pb-space-md"
+              style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom, 0px))" }}
+            >
               {nav.map((item) => (
                 <Link
                   key={item.href}

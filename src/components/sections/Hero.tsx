@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type Variants, useReducedMotion } from "framer-motion";
-import { Crown, ArrowUpRight, MessageCircle, ChevronDown } from "lucide-react";
+import { Crown, ArrowUpRight, MessageCircle } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Media from "@/components/ui/Media";
 import { hero } from "@/data/siteContent";
@@ -25,7 +25,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative -mt-20 flex min-h-[100svh] flex-col items-center overflow-hidden bg-primary px-0 pb-9 pt-28 sm:pt-32 lg:pt-36"
+      className="relative -mt-20 flex min-h-[100svh] flex-col items-center overflow-x-hidden overflow-y-hidden bg-primary px-0 pb-9 pt-28 sm:pt-32 lg:pt-36"
     >
       {/* Background image, full bleed behind the whole hero */}
       <div className="absolute inset-0 z-0">
@@ -44,26 +44,15 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-primary from-15% via-primary/75 via-55% to-primary/10" />
       </div>
 
-      {/* Concierge badge — small centered pill up top, same on every breakpoint */}
-      {/* <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.15, ease }}
-        className="relative z-20 mt-2 inline-flex items-center gap-2 border border-secondary-container/45 bg-primary/45 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-secondary-fixed backdrop-blur-sm sm:px-5 sm:py-2.5"
-      >
-        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" />
-        {hero.conciergeBadge}
-      </motion.div> */}
-
       <motion.div
         variants={container}
         initial={motionInitial}
         animate="show"
-        className="relative z-10 mx-auto flex w-full max-w-none flex-1 flex-col items-center justify-center gap-6 px-margin py-10 text-center sm:gap-7 sm:px-margin-tablet sm:py-14 lg:gap-8 lg:py-16"
+        className="relative z-10 mx-auto flex w-full max-w-none flex-1 flex-col items-center justify-center gap-5 px-margin py-8 text-center xs:gap-6 sm:gap-7 sm:px-margin-tablet sm:py-14 lg:gap-8 lg:py-16"
       >
         <motion.div
           variants={item}
-          className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-fixed sm:text-xs"
+          className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-secondary-fixed sm:text-xs"
         >
           <Crown className="h-3.5 w-3.5 shrink-0 text-secondary" strokeWidth={1.75} aria-hidden="true" />
           {hero.badge}
@@ -77,7 +66,7 @@ export default function Hero() {
 
         <motion.h1
           variants={item}
-          className="w-full text-balance font-display-xl text-display-lg text-surface lg:text-display-xl"
+          className="w-full text-balance font-[family-name:var(--font-heading)] text-[2.8rem] leading-[0.92] text-surface xs:text-[3.2rem] sm:text-[3.5rem] lg:text-[5rem]"
         >
           {hero.headline}
           <br />
@@ -86,7 +75,7 @@ export default function Hero() {
 
         <motion.p
           variants={item}
-          className="max-w-xl font-light text-body-sm text-surface-container sm:text-body-md lg:text-body-lg"
+          className="max-w-xs text-pretty text-[0.8rem] font-light leading-relaxed text-surface-container xs:max-w-sm sm:max-w-xl sm:text-body-md lg:text-body-lg"
         >
           {hero.body}
         </motion.p>
@@ -99,7 +88,7 @@ export default function Hero() {
             href={hero.ctaPrimary.href}
             variant="primary"
             showArrow={false}
-            className="!w-full justify-center !bg-surface !text-primary hover:!bg-secondary-container sm:!w-auto"
+            className="group !w-full justify-center !bg-surface !text-primary hover:!bg-secondary-container sm:!w-auto"
           >
             <span className="inline-flex items-center gap-1.5">
               {hero.ctaPrimary.label}
@@ -131,25 +120,25 @@ export default function Hero() {
         animate="show"
         className="relative z-10 mx-auto w-full max-w-3xl px-margin pb-1 sm:px-margin-tablet"
       >
-        <div className="grid grid-cols-2 gap-x-3 gap-y-5 border-t border-surface/15 pt-6 sm:hidden">
+        <div className="grid grid-cols-2 gap-x-2 gap-y-4 border-t border-surface/15 pt-5 xs:gap-x-3 xs:gap-y-5 xs:pt-6 sm:hidden">
           {hero.stats.map((stat) => (
             <div key={stat.label} className="flex flex-col items-center gap-1 text-center">
-              <span className="font-[family-name:var(--font-heading)] text-lg text-secondary-container">
+              <span className="font-[family-name:var(--font-heading)] text-base text-secondary-container xs:text-lg">
                 {stat.value}
               </span>
-              <span className="text-[0.62rem] leading-tight tracking-[0.1em] uppercase text-surface-container/80">
+              <span className="text-[0.6rem] leading-tight tracking-[0.08em] uppercase text-surface-container/80 xs:text-[0.62rem] xs:tracking-[0.1em]">
                 {stat.label}
               </span>
             </div>
           ))}
         </div>
 
-        <div className="hidden items-center justify-center gap-x-10 border-t border-surface/15 pt-7 sm:flex">
+        <div className="hidden items-center justify-center gap-x-6 border-t border-surface/15 pt-7 sm:flex sm:gap-x-8 lg:gap-x-10">
           {hero.stats.map((stat, i) => (
-            <div key={stat.label} className="flex items-center gap-x-10">
+            <div key={stat.label} className="flex items-center gap-x-6 sm:gap-x-8 lg:gap-x-10">
               {i !== 0 && <span aria-hidden className="h-8 w-px bg-surface/15" />}
               <div className="flex flex-col items-center gap-1 text-center">
-                <span className="font-[family-name:var(--font-heading)] text-xl text-secondary-container">
+                <span className="font-[family-name:var(--font-heading)] text-lg text-secondary-container sm:text-xl">
                   {stat.value}
                 </span>
                 <span className="text-[0.65rem] leading-tight tracking-[0.1em] uppercase text-surface-container/80">
@@ -161,11 +150,10 @@ export default function Hero() {
         </div>
       </motion.div>
 
- 
       {/* Divider mark */}
       <div
         aria-hidden
-        className="absolute -bottom-3 left-1/2 z-20 flex h-6 w-6 -translate-x-1/2 rotate-45 items-center justify-center border border-secondary-container/70 bg-primary"
+        className="absolute bottom-0 left-1/2 z-20 flex h-6 w-6 -translate-x-1/2 translate-y-1/2 rotate-45 items-center justify-center border border-secondary-container/70 bg-primary"
       >
         <span className="h-1.5 w-1.5 -rotate-45 rounded-full bg-secondary" />
       </div>

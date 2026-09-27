@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import FloatingActions from "@/components/ui/FloatingActions";
 import SmoothScroll from "@/components/layout/SmoothScroll";
@@ -19,7 +19,7 @@ const siteUrl = "https://lotusgrace.vercel.app";
     explicitly going for "doesn't look AI-made," Jakarta's rounder, friendlier
     letterforms are the better fit while staying just as legible at small sizes.
 */
-const playfairDisplay = Playfair_Display({
+const cormorantGaramond = Cormorant_Garamond({
   variable: "--font-heading",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -82,7 +82,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${playfairDisplay.variable} ${jakarta.variable} h-full scroll-smooth antialiased`}
+      className={`${cormorantGaramond.variable} ${jakarta.variable} h-full scroll-smooth antialiased`}
     >
       <body className="min-h-full flex flex-col bg-surface font-[family-name:var(--font-body)] text-on-surface">
         {children}
